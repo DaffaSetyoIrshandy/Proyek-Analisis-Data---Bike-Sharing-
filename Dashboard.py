@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1Cvwn8VsGayw8KZfEq16Inggvgo6NLezu
 """
 
-!pip install streamlit
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -46,8 +44,19 @@ st.subheader(" Data Penyewaan Berdasarkan Jam ")
 hourly_count = Perjam_df.groupby('hour')['count'].sum()
 fig, ax = plt.subplots(figsize=(10, 6))
 hourly_count.plot(kind='bar', ax=ax)
+ax.set_title('Jumlah Penyewaan Berdasarkan Jam')
+ax.set_xlabel('Jam')
+ax.set_ylabel('Jumlah Penyewaan')
+plt.tight_layout()
+st.pyplot(fig)
+
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
 season_count = Harian_df.groupby('season')['count'].sum()
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
+ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
+ax.set_xlabel('Musim')
+ax.set_ylabel('Jumlah Penyewaan')
+plt.tight_layout()
+st.pyplot(fig)
