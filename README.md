@@ -5,3 +5,20 @@ Submission Proyek Fundamental Analisis Data
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/144a5222-b39f-4790-8aca-1400bf620c17" />
 
 
+
+## Setup Environment - Anaconda
+```
+conda create --app.py python=3.11
+conda activate app.py
+pip install -r requirements.txt
+```
+
+
+## Setup Environment - Shell/Terminal
+```
+mkdir proyek_analisis_data
+cd proyek_analisis_data
+pipenv install
+pipenv shell
+pip install -r requirements.txt
+```
