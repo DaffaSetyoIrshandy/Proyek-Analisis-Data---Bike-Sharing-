@@ -141,7 +141,7 @@ season_name_count = (
   filtered_harian
   .groupby('season_names')['count']
   .sum()
-  .reindex(["Spring", "Summer", "Fall", "Winter"])
+  .reindex()
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_name_count.plot(kind='bar', ax=ax)
