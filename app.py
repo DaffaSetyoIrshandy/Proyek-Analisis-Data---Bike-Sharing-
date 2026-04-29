@@ -132,7 +132,7 @@ selected_weather_conds = [k for k, v in weather_names_map.items() if v in select
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Harian_df['season'].isin(selected_season)) &
+    (Harian_df['season'].isin(selected_seasons)) &
     (Harian_df['month'].isin(selected_months)) &
     (Harian_df['weekday'].isin(selected_weekdays)) &
     (Harian_df['weather_situation'].isin(selected_weather_conds))
@@ -141,8 +141,8 @@ filtered_harian = Harian_df[
 filtered_perjam = Perjam_df[
     (Perjam_df['dteday'] >= pd.to_datetime(start_date)) &
     (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Perjam_df['hr'].isin(selected_hour)) &
-    (Perjam_df['season'].isin(selected_season)) &
+    (Perjam_df['hour'].isin(selected_hours)) &
+    (Perjam_df['season'].isin(selected_seasons)) &
     (Perjam_df['month'].isin(selected_months)) &
     (Perjam_df['weekday'].isin(selected_weekdays)) &
     (Perjam_df['weather_situation'].isin(selected_weather_conds))
