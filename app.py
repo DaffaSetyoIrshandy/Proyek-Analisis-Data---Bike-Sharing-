@@ -38,7 +38,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Jam ")
-hourly_count = filtered_perjam.groupby('hour')['count'].sum()
+hourly_count = Perjam_df.groupby('hour')['count'].sum()
 fig, ax = plt.subplots(figsize=(10, 6))
 hourly_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Jam')
@@ -50,7 +50,7 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-season_count = filtered_harian.groupby('season')['count'].sum()
+season_count = Harian_df.groupby('season')['count'].sum()
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
