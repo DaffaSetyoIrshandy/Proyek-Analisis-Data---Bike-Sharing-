@@ -46,13 +46,14 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
+Harian_df['season_name'] = Harian_df['season'].map(season_map)
 season_names_list = ["Spring", "Summer", "Fall", "Winter"]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
     options=season_names_list,
     default=season_names_list
 )
-Harian_df['season_name'] = Harian_df['season'].map(season_map)
+
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
 
@@ -140,7 +141,7 @@ season_name_count = (
   filtered_harian
   .groupby('season_name')['count']
   .sum()
-  .reindex('season_name_list')
+  .reindex(season_name_list)
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_name_count.plot(kind='bar', ax=ax)
