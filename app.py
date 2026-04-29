@@ -46,6 +46,7 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
+Harian_df['season'] = Harian_df['season'].astype(int)
 Harian_df['season_name'] = Harian_df['season'].map(season_map)
 season_names_list = ["Spring", "Summer", "Fall", "Winter"]
 selected_season = st.sidebar.multiselect(
@@ -143,7 +144,7 @@ season_name_count = (
   filtered_harian
   .groupby('season_name')['count']
   .sum()
-  .reindex(season_order)
+  .reindex(["Spring", "Summer", "Fall", "Winter"])
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_name_count.plot(kind='bar', ax=ax)
