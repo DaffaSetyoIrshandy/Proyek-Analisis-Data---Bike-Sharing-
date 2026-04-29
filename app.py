@@ -110,6 +110,7 @@ filtered_perjam = Perjam_df[
     (Perjam_df['weekday'].isin(selected_weekdays))
 ]
 
+
 st.set_page_config(layout="wide")
 st.title("Analisis Data Bike Sharing")
 
