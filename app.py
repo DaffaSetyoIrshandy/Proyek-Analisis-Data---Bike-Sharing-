@@ -130,8 +130,8 @@ selected_weather_names = st.sidebar.multiselect(
 selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
 
 filtered_harian = Harian_df[
-    (Harian_df['date'] >= pd.to_datetime(start_date)) &
-    (Harian_df['date'] <= pd.to_datetime(end_date)) &
+    (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
+    (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
     (Harian_df['season'].isin(selected_season)) &
     (Harian_df['mnth'].isin(selected_months)) &
     (Harian_df['weekday'].isin(selected_weekdays)) &
@@ -139,8 +139,8 @@ filtered_harian = Harian_df[
 ]
 
 filtered_perjam = Perjam_df[
-    (Perjam_df['date'] >= pd.to_datetime(start_date)) &
-    (Perjam_df['date'] <= pd.to_datetime(end_date)) &
+    (Perjam_df['dteday'] >= pd.to_datetime(start_date)) &
+    (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
     (Perjam_df['hr'].isin(selected_hour)) &
     (Perjam_df['season'].isin(selected_season)) &
     (Perjam_df['mnth'].isin(selected_months)) &
