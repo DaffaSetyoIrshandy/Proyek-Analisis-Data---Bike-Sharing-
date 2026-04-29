@@ -24,8 +24,6 @@ st.sidebar.header("Filter Data")
 season_map = {
     1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"
 }
-
-
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
     7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
@@ -93,7 +91,7 @@ filtered_harian = Harian_df[
 filtered_perjam = Perjam_df[
     (Perjam_df['dteday'] >= pd.to_datetime(start_date)) &
     (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Perjam_df['hour'].isin(selected_hour)) &
+    (Perjam_df['hours'].isin(selected_hours)) &
     (Perjam_df['season'].isin(selected_season)) &
     (Perjam_df['month'].isin(selected_months)) &
     (Perjam_df['weekday'].isin(selected_weekdays))
@@ -119,7 +117,7 @@ st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Jam ")
 
-hourly_count = filtered_perjam.groupby('hour')['cnt'].sum().sort_index()
+hourly_count = filtered_perjam.groupby('hours')['cnt'].sum().sort_index()
 
 if hourly_count.empty:
     st.warning("Data kosong setelah filter. Silakan ubah filter.")
