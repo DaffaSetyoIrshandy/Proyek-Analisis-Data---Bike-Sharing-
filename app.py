@@ -125,6 +125,7 @@ hourly_count = (
     .sum()
     .reindex(range(24)) 
 )
+
 fig, ax = plt.subplots(figsize=(10, 6))
 hourly_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan jam ')
@@ -135,7 +136,11 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-season_count = filtered_harian.groupby('season')['count'].sum().sort_index()
+season_count = (
+  filtered_harian
+  .groupby('season')['count']
+  .sum().sort_index()
+)
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
