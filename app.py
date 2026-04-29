@@ -55,13 +55,14 @@ selected_season = st.sidebar.multiselect(
 )
 
 # Hour filter
-Perjam_df['hour'] = Perjam_df [f"{i:02d}:00" for i in range(24)]
-selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
+hours_str = [f"{i:02d}:00" for i in range(24)]
+
 selected_hour = st.sidebar.multiselect(
     "Pilih Jam",
-    options=selected_hour_int,
-    default=selected_hour_int
+    options=hours_str,
+    default=hours_str
 )
+selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
 
 
 # Month filter
@@ -92,7 +93,7 @@ filtered_harian = Harian_df[
 filtered_perjam = Perjam_df[
     (Perjam_df['dteday'] >= pd.to_datetime(start_date)) &
     (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Perjam_df['selected_hour_int'].isin(selected_hour)) &
+    (Perjam_df['hour'].isin(selected_hour_int)) &
     (Perjam_df['season'].isin(selected_season)) &
     (Perjam_df['month'].isin(selected_months)) &
     (Perjam_df['weekday'].isin(selected_weekdays))
