@@ -11,8 +11,8 @@ def df_harian_count(df_harian):
     df_harian_2011 = df_harian.query(str('dteday >= "2011-01-01" and dteday < "2012-12-31"'))
     return df_harian_count_2011
 
-Harian_df = pd.read_csv(r"C:\Users\daffa\OneDrive\Dokumen\Belajar\Submission_Fundamental_Analisis\Dashboard\df_harian_clean.csv")
-Perjam_df = pd.read_csv(r"C:\Users\daffa\OneDrive\Dokumen\Belajar\Submission_Fundamental_Analisis\Dashboard\df_Perjam_clean.csv")
+Harian_df = pd.read_csv("df_harian_clean.csv")
+Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
