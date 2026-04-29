@@ -21,9 +21,7 @@ Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
 
-season_map = {
-    1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"
-}
+season_map = {1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"}
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
     7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
