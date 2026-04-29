@@ -1,4 +1,5 @@
 pandas 
-matplotlib.pyplot
+matplotlib
 seaborn
 streamlit
+python-3.11
