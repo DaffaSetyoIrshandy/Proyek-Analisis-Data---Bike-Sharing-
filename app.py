@@ -139,7 +139,7 @@ st.subheader(" Data Penyewaan Berdasarkan Season")
 
 season_names_count = (
     filtered_harian
-    .groupby('season_name')['count']
+    .groupby('season_names')['count']
     .sum()
     .reindex(["Spring","Summer","Fall","Winter"], fill_value=0)
 )
