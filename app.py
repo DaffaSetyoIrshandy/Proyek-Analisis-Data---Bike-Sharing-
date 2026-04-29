@@ -96,7 +96,7 @@ filtered_perjam = Perjam_df[
 st.set_page_config(layout="wide")
 st.title("Analisis Data Bike Sharing")
 
-daily_count = Harian_df.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
+daily_count = filtered_harian.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
 daily_count.rename(columns={'casual': 'casual_user', 'registered': 'registered_user'}, inplace=True)  
 
 
@@ -112,7 +112,7 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Jam ")
-hourly_count = filtered_perjam.groupby('hour')['cnt'].sum().sort_index()
+hourly_count = filtered_perjam.groupby('hour')['count'].sum().sort_index()
 fig, ax = plt.subplots(figsize=(10, 6))
 hourly_count = hourly_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Jam')
@@ -125,7 +125,7 @@ st.write("filtered_perjam shape:", filtered_perjam.shape)
 st.write(filtered_perjam.head())
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-season_count = Harian_df.groupby('season')['count'].sum()
+season_count = filtered_harian.groupby('season')['count'].sum()
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
@@ -133,17 +133,3 @@ ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
 plt.tight_layout()
 st.pyplot(fig)
-
-
-# Fitur interaktif filtering 
-st.sidebar.header("Filter Data")
-
-season_names_list = ["Spring", "Summer", "Fall", "Winter"]
-month_names_map = {
-    1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
-    7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
-}
-weekday_names_map = {
-    0: "Minggu", 1: "Senin", 2: "Selasa", 3: "Rabu", 4: "Kamis", 5: "Jumat", 6: "Sabtu"
-}
-
