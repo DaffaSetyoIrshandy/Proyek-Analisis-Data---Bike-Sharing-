@@ -133,7 +133,7 @@ filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
     (Harian_df['season'].isin(selected_season)) &
-    (Harian_df['mnth'].isin(selected_months)) &
+    (Harian_df['month'].isin(selected_months)) &
     (Harian_df['weekday'].isin(selected_weekdays)) &
     (Harian_df['weathersit'].isin(selected_weather_conds))
 ]
@@ -143,7 +143,7 @@ filtered_perjam = Perjam_df[
     (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
     (Perjam_df['hr'].isin(selected_hour)) &
     (Perjam_df['season'].isin(selected_season)) &
-    (Perjam_df['mnth'].isin(selected_months)) &
+    (Perjam_df['month'].isin(selected_months)) &
     (Perjam_df['weekday'].isin(selected_weekdays)) &
     (Perjam_df['weathersit'].isin(selected_weather_conds))
 ]
