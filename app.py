@@ -12,8 +12,28 @@ def df_harian_count(df_harian):
     return df_harian_count_2011
   
 
-# Fitur interaktif filtering (misal: filter berdasarkan tanggal, musim, jam, dsb).
+# Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
+
+# Mappings for better readability in filters
+season_names_list = ["Spring", "Summer", "Fall", "Winter"]
+month_names_map = {
+    1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
+    7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
+}
+weekday_names_map = {
+    0: "Minggu", 1: "Senin", 2: "Selasa", 3: "Rabu", 4: "Kamis", 5: "Jumat", 6: "Sabtu"
+}
+weather_names_map = {
+    1: "Cerah, Sedikit awan, Sebagian berawan",
+    2: "Kabut + Berawan, Kabut + Awan pecah-pecah",
+    3: "Salju Ringan, Hujan Ringan + Badai Petir",
+    4: "Hujan Lebat + Butiran Es + Badai Petir"
+}
+
+# Date range for slider
+min_date_df = Harian_df['dteday'].min()
+max_date_df = Harian_df['dteday'].max()
 
 # Date range filter
 start_date, end_date = st.sidebar.slider(
