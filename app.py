@@ -81,7 +81,7 @@ selected_month_names = st.sidebar.multiselect(
     options=list(month_map.values()),
     default=list(month_map.values())
 )
-selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
+selected_months = [k for k, v in month_map.items() if v in selected_month_names]
 
 # Weekday filter
 Harian_df['weekday_name'] = Harian_df['weekday'].map(weekday_map)
@@ -90,7 +90,7 @@ selected_weekday_names = st.sidebar.multiselect(
     options=list(weekday_map.values()),
     default=list(weekday_map.values())
 )
-selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
+selected_weekdays = [k for k, v in weekday_map.items() if v in selected_weekday_names]
 
 
 filtered_harian = Harian_df[
