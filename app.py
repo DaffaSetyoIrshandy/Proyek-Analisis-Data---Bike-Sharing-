@@ -12,24 +12,15 @@ def df_harian_count(df_harian):
     return df_harian_count_2011
   
 
-# Fitur interaktif filtering 
+# Fitur interaktif filtering (misal: filter berdasarkan tanggal, musim, jam, dsb).
 st.sidebar.header("Filter Data")
-Harian_df['dteday'] = pd.to_datetime(Harian_df['dteday'])
-Perjam_df['dteday'] = pd.to_datetime(Perjam_df['dteday'])
-                                      
+
 # Date range filter
 start_date, end_date = st.sidebar.slider(
-    "Pilih Rentang Tanggal Berdasarkan Harian",
-    min_value=Harian_df['date'].min(),
-    max_value=Harian_df['date'].max(),
-    value=(Harian_df['date'].min(), Harian_df['date'].max())
-)
-
-start_date, end_date = st.sidebar.slider(
-    "Pilih Rentang Tanggal Berdasarkan Perjam",
-    min_value=Perjam_df['date'].min(),
-    max_value=Perjam_df['date'].max(),
-    value=(Perjam_df['date'].min(), Perjam_df['date'].max())
+    "Pilih Rentang Tanggal",
+    min_value=min_date_df.date(),
+    max_value=max_date_df.date(),
+    value=(min_date_df.date(), max_date_df.date())
 )
 
 # Season filter
@@ -72,9 +63,8 @@ selected_weather_names = st.sidebar.multiselect(
 )
 selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
 
-
-Harian_df = pd.read_csv("df_harian_clean.csv", sep=';')
-Perjam_df = pd.read_csv("df_Perjam_clean.csv", sep=';')
+Harian_df = pd.read_csv("df_harian_clean.csv")
+Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
