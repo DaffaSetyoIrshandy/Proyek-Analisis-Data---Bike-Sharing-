@@ -78,8 +78,8 @@ weather_names_map = {
 }
 
 
-min_date_df = Harian_df['date'].min().date()
-max_date_df = Harian_df['date'].max().date()
+min_date_df = Harian_df['dteday'].min().date()
+max_date_df = Harian_df['dteday'].max().date()
 
 # Date range filter
 start_date, end_date = st.sidebar.slider(
