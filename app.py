@@ -70,12 +70,7 @@ month_names_map = {
 weekday_names_map = {
     0: "Minggu", 1: "Senin", 2: "Selasa", 3: "Rabu", 4: "Kamis", 5: "Jumat", 6: "Sabtu"
 }
-weather_names_map = {
-    1: "Cerah, Sedikit awan, Sebagian berawan",
-    2: "Kabut + Berawan, Kabut + Awan pecah-pecah",
-    3: "Salju Ringan, Hujan Ringan + Badai Petir",
-    4: "Hujan Lebat + Butiran Es + Badai Petir"
-}
+
 
 
 min_date_df = Harian_df['dteday'].min().date()
