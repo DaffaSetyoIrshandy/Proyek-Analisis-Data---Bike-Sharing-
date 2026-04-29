@@ -17,7 +17,7 @@ Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
-Harian_df['season'] = Harian_df['season'].astype(int)
+
 
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
@@ -50,12 +50,14 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
+Harian_df['season'] = Harian_df['season'].astype(int)
 Harian_df['season_names'] = Harian_df['season'].map(season_map)
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
     options=list(season_map.values()),
     default=list(season_map.values())
 )
+
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
 
