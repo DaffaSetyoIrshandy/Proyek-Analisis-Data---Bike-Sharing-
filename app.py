@@ -117,7 +117,7 @@ st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Jam ")
 
-hourly_count = filtered_perjam.groupby('hours')['cnt'].sum().sort_index()
+hourly_count = filtered_perjam.groupby('hour')['cnt'].sum().sort_index()
 
 if hourly_count.empty:
     st.warning("Data kosong setelah filter. Silakan ubah filter.")
