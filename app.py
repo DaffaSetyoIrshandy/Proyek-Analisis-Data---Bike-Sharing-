@@ -10,6 +10,9 @@ def get_total_df_Perjam_count(df_Perjam):
 def df_harian_count(df_harian):
     df_harian_2011 = df_harian.query(str('dteday >= "2011-01-01" and dteday < "2012-12-31"'))
     return df_harian_count_2011
+  
+st.sidebar.header("Filter Data")
+selected_year = st.sidebar.selectbox("Pilih Tahun", options=[2011, 2012])
 
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
