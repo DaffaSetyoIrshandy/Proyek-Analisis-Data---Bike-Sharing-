@@ -14,7 +14,9 @@ def df_harian_count(df_harian):
 
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
-
+Harian_df['dteday'] = pd.to_datetime(Harian_df['dteday'])
+Perjam_df['dateday'] = pd.to_datetime(Perjam_df['dteday']
+                                      
 # Date range filter
 start_date, end_date = st.sidebar.slider(
     "Pilih Rentang Tanggal Berdasarkan Harian",
