@@ -91,7 +91,7 @@ filtered_harian = Harian_df[
 filtered_perjam = Perjam_df[
     (Perjam_df['dteday'] >= pd.to_datetime(start_date)) &
     (Perjam_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Perjam_df['hours'].isin(selected_hours)) &
+    (Perjam_df['hour'].isin(selected_hour)) &
     (Perjam_df['season'].isin(selected_season)) &
     (Perjam_df['month'].isin(selected_months)) &
     (Perjam_df['weekday'].isin(selected_weekdays))
