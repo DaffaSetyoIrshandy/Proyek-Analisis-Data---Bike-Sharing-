@@ -121,7 +121,7 @@ hourly_count = (
     filtered_perjam
     .groupby('hour')['count']
     .sum()
-    .reindex(range(24), fill_value=0) 
+    .reindex(range(24)) 
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 hourly_count.plot(kind='bar', ax=ax)
