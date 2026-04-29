@@ -45,7 +45,6 @@ start_date, end_date = st.sidebar.slider(
 
 # Season filter
 Harian_df['season_names'] = Harian_df['season'].map(season_map)
-season_names = ["Spring", "Summer", "Fall", "Winter"]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
     options=season_names,
