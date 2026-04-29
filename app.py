@@ -154,7 +154,7 @@ season_count = (
     .reindex(season_map.values(), fill_value=0)
 )
 fig, ax = plt.subplots(figsize=(10, 6))
-season_name_count.plot(kind='bar', ax=ax)
+season_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
 ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
