@@ -21,7 +21,12 @@ Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
 
-season_map = {1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"}
+season_map = {
+   "Spring" : 1,
+   "Summer" : 2,
+    "Fall" : 3,
+   "Winter" : 4
+}
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
     7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
@@ -45,13 +50,13 @@ start_date, end_date = st.sidebar.slider(
 
 # Season filter
 Harian_df['season_names'] = Harian_df['season'].map(season_map)
-season_name_list = [ 'Spring', 'Summer', 'Fall', 'Winter' ]
+season_names_list = [ 'Spring', 'Summer', 'Fall', 'Winter' ]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
-    options=season_name_list,
-    default=season_name_list
+    options=season_names_list,
+    default=season_names_list
 )
-
+selected_season = 
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
 
@@ -137,12 +142,6 @@ st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
 
-season_names_count = (
-    filtered_harian
-    .groupby('season_names')['count']
-    .sum()
-    .reindex(["Spring","Summer","Fall","Winter"])
-)
 fig, ax = plt.subplots(figsize=(10, 6))
 season_names_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
