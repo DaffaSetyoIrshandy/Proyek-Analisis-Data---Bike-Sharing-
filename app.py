@@ -66,7 +66,7 @@ selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
 
 
 # Month filter
-Harian_df['month_name'] = Harian_df['mnth'].map(month_names_map)
+Harian_df['month_name'] = Harian_df['month'].map(month_names_map)
 selected_month_names = st.sidebar.multiselect(
     "Pilih Bulan",
     options=list(month_names_map.values()),
