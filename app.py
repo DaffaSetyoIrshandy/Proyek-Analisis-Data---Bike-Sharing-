@@ -81,16 +81,12 @@ weather_names_map = {
 min_date_df = Harian_df['date'].min()
 max_date_df = Harian_df['date'].max()
 
-date_df = date_df.groupby('dteday').agg({
-  'Harian_df': 'sum', 
-  'Perjam_df': 'sum'
-}).reset_index()
 # Date range filter
 start_date, end_date = st.sidebar.slider(
     "Pilih Rentang Tanggal",
-    min_value=min_date_df.date(),
-    max_value=max_date_df.date(),
-    value=(min_date_df.date(), max_date_df.date())
+    min_value=min_date_df.date,
+    max_value=max_date_df.date,
+    value=(min_date_df.date, max_date_df.date)
 )
 
 # Season filter
@@ -101,7 +97,7 @@ selected_season = st.sidebar.multiselect(
 )
 
 # Hour filter
-hours = [f"{i:02d}:00" for i in range(24)]
+hours = list(range(24))
 selected_hour = st.sidebar.multiselect(
     "Pilih Jam",
     options=hours,
@@ -132,3 +128,22 @@ selected_weather_names = st.sidebar.multiselect(
     default=list(weather_names_map.values())
 )
 selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
+
+filtered_harian = Harian_df[
+    (Harian_df['date'] >= pd.to_datetime(start_date)) &
+    (Harian_df['date'] <= pd.to_datetime(end_date)) &
+    (Harian_df['season'].isin(selected_season)) &
+    (Harian_df['mnth'].isin(selected_months)) &
+    (Harian_df['weekday'].isin(selected_weekdays)) &
+    (Harian_df['weathersit'].isin(selected_weather_conds))
+]
+
+filtered_perjam = Perjam_df[
+    (Perjam_df['date'] >= pd.to_datetime(start_date)) &
+    (Perjam_df['date'] <= pd.to_datetime(end_date)) &
+    (Perjam_df['hr'].isin(selected_hour)) &
+    (Perjam_df['season'].isin(selected_season)) &
+    (Perjam_df['mnth'].isin(selected_months)) &
+    (Perjam_df['weekday'].isin(selected_weekdays)) &
+    (Perjam_df['weathersit'].isin(selected_weather_conds))
+]
