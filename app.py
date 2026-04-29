@@ -15,7 +15,7 @@ def df_harian_count(df_harian):
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
-Harian_df['season'] = Harian_df['season'].astype(int)
+
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 
