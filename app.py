@@ -135,11 +135,12 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
+season_names_list = ["Spring", "Summer", "Fall", "Winter"]
 season_name_count = (
   filtered_harian
   .groupby('season_name')['count']
   .sum()
-  .reindex(season_name)
+  .reindex(season_name_list)
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_name_count.plot(kind='bar', ax=ax)
