@@ -73,8 +73,8 @@ selected_weather_names = st.sidebar.multiselect(
 selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
 
 
-Harian_df = pd.read_csv("df_harian_clean.csv")
-Perjam_df = pd.read_csv("df_Perjam_clean.csv")
+Harian_df = pd.read_csv("df_harian_clean.csv", sep=';')
+Perjam_df = pd.read_csv("df_Perjam_clean.csv", sep=';')
 
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
