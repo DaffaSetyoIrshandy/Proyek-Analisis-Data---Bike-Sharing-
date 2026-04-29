@@ -78,12 +78,12 @@ weather_names_map = {
 }
 
 
-min_date_df = Harian_df['dteday'].min()
-max_date_df = Harian_df['dteday'].max()
+min_date_df = Harian_df['date'].min()
+max_date_df = Harian_df['date'].max()
 
 date_df = date_df.groupby('dteday').agg({
-  'Harian_df['dteday']': 'sum', 
-  'Perjam_df['dteday']': 'sum'
+  'Harian_df['date']': 'sum', 
+  'Perjam_df['date']': 'sum'
 }).reset_index()
 # Date range filter
 start_date, end_date = st.sidebar.slider(
