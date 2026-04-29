@@ -46,7 +46,6 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
-Harian_df['season'] = Harian_df['season'].astype(int)
 Harian_df['season_name'] = Harian_df['season'].map(season_map)
 season_names_list = ["Spring", "Summer", "Fall", "Winter"]
 selected_season = st.sidebar.multiselect(
@@ -139,7 +138,8 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-season_order = ["Spring", "Summer", "Fall", "Winter"]
+#Harian_df['season'] = Harian_df['season'].astype(int)
+#season_order = ["Spring", "Summer", "Fall", "Winter"]
 season_name_count = (
   filtered_harian
   .groupby('season_name')['count']
