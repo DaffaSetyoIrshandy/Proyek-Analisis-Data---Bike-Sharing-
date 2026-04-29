@@ -11,7 +11,56 @@ def df_harian_count(df_harian):
     df_harian_2011 = df_harian.query(str('dteday >= "2011-01-01" and dteday < "2012-12-31"'))
     return df_harian_count_2011
   
+# Fitur interaktif filtering 
+st.sidebar.header("Filter Data")
 
+# Date range filter
+start_date, end_date = st.sidebar.slider(
+    "Pilih Rentang Tanggal",
+    min_value=min_date_df.date(),
+    max_value=max_date_df.date(),
+    value=(min_date_df.date(), max_date_df.date())
+)
+
+# Season filter
+selected_season = st.sidebar.multiselect(
+    "Pilih Musim",
+    options=season_names_list,
+    default=season_names_list
+)
+
+# Hour filter
+hours = [f"{i:02d}:00" for i in range(24)]
+selected_hour = st.sidebar.multiselect(
+    "Pilih Jam",
+    options=hours,
+    default=hours
+)
+selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
+
+# Month filter
+selected_month_names = st.sidebar.multiselect(
+    "Pilih Bulan",
+    options=list(month_names_map.values()),
+    default=list(month_names_map.values())
+)
+selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
+
+# Weekday filter
+selected_weekday_names = st.sidebar.multiselect(
+    "Pilih Hari",
+    options=list(weekday_names_map.values()),
+    default=list(weekday_names_map.values())
+)
+selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
+
+# Weather condition filter
+selected_weather_names = st.sidebar.multiselect(
+    "Pilih Kondisi Cuaca",
+    options=list(weather_names_map.values()),
+    default=list(weather_names_map.values())
+)
+selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
 
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
@@ -59,29 +108,3 @@ ax.set_ylabel('Jumlah Penyewaan')
 plt.tight_layout()
 st.pyplot(fig)
 
-#Menambahkan filtering pada streamlit
-# Filtering logic
-filtered_harian_df = Harian_df[
-    (Harian_df['dteday'].dt.date >= start_date) &
-    (Harian_df['dteday'].dt.date <= end_date) &
-    (Harian_df['season'].isin(selected_season)) &
-    (Harian_df['month'].isin(selected_months)) &
-    (Harian_df['weekday'].isin(selected_weekdays)) &
-    (Harian_df['weather_situation'].isin(selected_weather_conds))
-].copy()
-
-filtered_perjam_df = Perjam_df[
-    (Perjam_df['dteday'].dt.date >= start_date) &
-    (Perjam_df['dteday'].dt.date <= end_date) &
-    (Perjam_df['season'].isin(selected_season)) &
-    (Perjam_df['hour'].isin(selected_hour_int)) &
-    (Perjam_df['month'].isin(selected_months)) &
-    (Perjam_df['weekday'].isin(selected_weekdays)) &
-    (Perjam_df['weather_situation'].isin(selected_weather_conds))
-].copy()
-
-# Recalculate daily_count and hourly_count based on filtered data
-daily_count = filtered_harian_df.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
-daily_count.rename(columns={'casual': 'casual_user', 'registered': 'registered_user'}, inplace=True)
-hourly_count = filtered_perjam_df.groupby('hour')['count'].sum()
-season_count = filtered_harian_df.groupby('season')['count'].sum()
