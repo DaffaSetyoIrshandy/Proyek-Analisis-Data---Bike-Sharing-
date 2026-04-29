@@ -15,6 +15,7 @@ def df_harian_count(df_harian):
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
+Harian_df['season'] = Harian_df['season'].astype(int)
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 
@@ -23,10 +24,10 @@ Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 st.sidebar.header("Filter Data")
 
 season_map = {
-   "Spring" : 1,
-   "Summer" : 2,
-    "Fall" : 3,
-   "Winter" : 4
+    1: "Spring",
+    2: "Summer",
+    3: "Fall",
+    4: "Winter"
 }
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
@@ -50,7 +51,6 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
-Harian_df['season'] = Harian_df['season'].astype(int)
 Harian_df['season_names'] = Harian_df['season'].map(season_map)
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
