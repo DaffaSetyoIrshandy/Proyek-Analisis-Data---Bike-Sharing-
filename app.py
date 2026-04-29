@@ -131,7 +131,7 @@ st.write("filtered_perjam shape:", filtered_perjam.shape)
 st.write(filtered_perjam.head())
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-season_count = filtered_harian.groupby('season')['count'].sum()
+season_count = filtered_harian.groupby('season')['count'].sum().sort_index()
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
