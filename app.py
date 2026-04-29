@@ -84,9 +84,9 @@ max_date_df = Harian_df['date'].max()
 # Date range filter
 start_date, end_date = st.sidebar.slider(
     "Pilih Rentang Tanggal",
-    min_value=min_date_df.date,
-    max_value=max_date_df.date,
-    value=(min_date_df.date, max_date_df.date)
+    min_value=min_date_df,
+    max_value=max_date_df,
+    value=(min_date_df, max_date_df)
 )
 
 # Season filter
