@@ -149,7 +149,7 @@ st.pyplot(fig)
 st.subheader(" Data Penyewaan Berdasarkan Season")
 season_count = (
     filtered_harian
-    .groupby('season')['count']
+    .groupby('season_name')['count']
     .sum()
 )
 fig, ax = plt.subplots(figsize=(10, 6))
