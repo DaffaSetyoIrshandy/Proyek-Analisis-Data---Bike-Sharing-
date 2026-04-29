@@ -121,7 +121,8 @@ ax.set_ylabel('Jumlah Penyewaan')
 plt.tight_layout()
 st.pyplot(fig)
 
-
+st.write("filtered_perjam shape:", filtered_perjam.shape)
+st.write(filtered_perjam.head())
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
 season_count = Harian_df.groupby('season')['count'].sum()
