@@ -24,7 +24,7 @@ st.sidebar.header("Filter Data")
 season_map = {
     1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"
 }
-Harian_df['season_name'] = Harian_df['season'].map(season_map)
+
 
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
@@ -48,10 +48,12 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
+Harian_df['season_name'] = Harian_df['season'].map(season_map)
+season_names_list = ["Spring", "Summer", "Fall", "Winter"]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
-    options=season_name,
-    default=season_name
+    options=season_name_list,
+    default=season_name_list
 )
 
 # Hour filter
