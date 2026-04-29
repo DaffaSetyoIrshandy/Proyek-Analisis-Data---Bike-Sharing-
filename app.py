@@ -151,7 +151,6 @@ season_count = (
     filtered_harian
     .groupby('season')['count']
     .sum()
-    .set_index()
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_count.plot(kind='bar', ax=ax)
