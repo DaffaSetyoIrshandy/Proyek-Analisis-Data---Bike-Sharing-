@@ -136,11 +136,10 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-#Harian_df['season'] = Harian_df['season'].astype(int)
-#season_order = ["Spring", "Summer", "Fall", "Winter"]
+
 season_name_count = (
   filtered_harian
-  .groupby('season_name')['count']
+  .groupby('season_names')['count']
   .sum()
   .reindex(["Spring", "Summer", "Fall", "Winter"])
 )
