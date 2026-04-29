@@ -116,13 +116,6 @@ selected_weekday_names = st.sidebar.multiselect(
 )
 selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
 
-# Weather condition filter
-selected_weather_names = st.sidebar.multiselect(
-    "Pilih Kondisi Cuaca",
-    options=list(weather_names_map.values()),
-    default=list(weather_names_map.values())
-)
-selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
 
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
