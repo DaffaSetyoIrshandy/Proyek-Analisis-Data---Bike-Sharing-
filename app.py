@@ -66,6 +66,7 @@ selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
 
 
 # Month filter
+Harian_df['month_name'] = Harian_df['mnth'].map(month_names_map)
 selected_month_names = st.sidebar.multiselect(
     "Pilih Bulan",
     options=list(month_names_map.values()),
@@ -74,6 +75,7 @@ selected_month_names = st.sidebar.multiselect(
 selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
 
 # Weekday filter
+Harian_df['weekday_name'] = Harian_df['weekday'].map(weekday_names_map)
 selected_weekday_names = st.sidebar.multiselect(
     "Pilih Hari",
     options=list(weekday_names_map.values()),
@@ -86,8 +88,8 @@ filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
     (Harian_df['season_name'].isin(selected_season)) &
-    (Harian_df['month'].isin(selected_month_names)) &
-    (Harian_df['weekday'].isin(selected_weekday_names))
+    (Harian_df['month_name'].isin(selected_month_names)
+    (Harian_df['weekday_name'].isin(selected_weekday_names))
 ]
 
 filtered_perjam = Perjam_df[
