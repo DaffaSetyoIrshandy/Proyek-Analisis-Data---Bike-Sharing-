@@ -12,6 +12,64 @@ def df_harian_count(df_harian):
     return df_harian_count_2011
   
 
+# Fitur interaktif filtering 
+st.sidebar.header("Filter Data")
+
+# Date range filter
+start_date, end_date = st.sidebar.slider(
+    "Pilih Rentang Tanggal Berdasarkan Harian",
+    min_value=min_df_harian_clean.date(),
+    max_value=max_df_harian_clean.date(),
+    value=(min_df_harian_clean.date(), max_df_harian_clean.date())
+)
+
+start_date, end_date = st.sidebar.slider(
+    "Pilih Rentang Tanggal Berdasarkan Perjam",
+    min_value=min_df_Perjam_clean.date(),
+    max_value=max_df_Perjam_clean.date(),
+    value=(min_df_Perjam_clean.date(),max_df_Perjam_clean.date())
+)
+
+# Season filter
+selected_season = st.sidebar.multiselect(
+    "Pilih Musim",
+    options=season_names_list,
+    default=season_names_list
+)
+
+# Hour filter
+hours = [f"{i:02d}:00" for i in range(24)]
+selected_hour = st.sidebar.multiselect(
+    "Pilih Jam",
+    options=hours,
+    default=hours
+)
+selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
+
+# Month filter
+selected_month_names = st.sidebar.multiselect(
+    "Pilih Bulan",
+    options=list(month_names_map.values()),
+    default=list(month_names_map.values())
+)
+selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
+
+# Weekday filter
+selected_weekday_names = st.sidebar.multiselect(
+    "Pilih Hari",
+    options=list(weekday_names_map.values()),
+    default=list(weekday_names_map.values())
+)
+selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
+
+# Weather condition filter
+selected_weather_names = st.sidebar.multiselect(
+    "Pilih Kondisi Cuaca",
+    options=list(weather_names_map.values()),
+    default=list(weather_names_map.values())
+)
+selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
+
 
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
@@ -58,61 +116,3 @@ ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
 plt.tight_layout()
 st.pyplot(fig)
-
-# Fitur interaktif filtering 
-st.sidebar.header("Filter Data")
-
-# Date range filter
-start_date, end_date = st.sidebar.slider(
-    "Pilih Rentang Tanggal Berdasarkan Harian",
-    min_value=min_Harian_df.date(),
-    max_value=max_Harian_df.date(),
-    value=(min_Harian_df.date(), max_Harian_df.date())
-)
-
-start_date, end_date = st.sidebar.slider(
-    "Pilih Rentang Tanggal Berdasarkan Perjam",
-    min_value=min_Perjam_df.date(),
-    max_value=max_Perjam_df.date(),
-    value=(min_Perjam_df.date(),max_Perjam_df.date())
-)
-
-# Season filter
-selected_season = st.sidebar.multiselect(
-    "Pilih Musim",
-    options=season_names_list,
-    default=season_names_list
-)
-
-# Hour filter
-hours = [f"{i:02d}:00" for i in range(24)]
-selected_hour = st.sidebar.multiselect(
-    "Pilih Jam",
-    options=hours,
-    default=hours
-)
-selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
-
-# Month filter
-selected_month_names = st.sidebar.multiselect(
-    "Pilih Bulan",
-    options=list(month_names_map.values()),
-    default=list(month_names_map.values())
-)
-selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
-
-# Weekday filter
-selected_weekday_names = st.sidebar.multiselect(
-    "Pilih Hari",
-    options=list(weekday_names_map.values()),
-    default=list(weekday_names_map.values())
-)
-selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
-
-# Weather condition filter
-selected_weather_names = st.sidebar.multiselect(
-    "Pilih Kondisi Cuaca",
-    options=list(weather_names_map.values()),
-    default=list(weather_names_map.values())
-)
-selected_weather_conds = [k for k, v in weather_names_map.items() if v in selected_weather_names]
