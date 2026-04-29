@@ -48,8 +48,8 @@ Harian_df['season_name'] = Harian_df['season'].map(season_map)
 season_name_list = ["Spring", "Summer", "Fall", "Winter"]
 selected_season_name = st.sidebar.multiselect(
     "Pilih Musim",
-    options=season_names_list,
-    default=season_names_list
+    options=season_name_list,
+    default=season_name_list
 )
 
 # Hour filter
