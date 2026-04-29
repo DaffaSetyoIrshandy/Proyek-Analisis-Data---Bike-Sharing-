@@ -2,7 +2,8 @@
 Submission Proyek Fundamental Analisis Data
 
 ## Preview dari Dashboard
-<img "C:\Users\daffa\OneDrive\Gambar\Screenshots\Cuplikan layar 2026-04-30 053648.png" />
+<img <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7881f2e2-cd3f-4d8a-b68e-bc023a71919a" />
+ />
 
 ## Deskripsi 
 Dashboard yang dibuat digunakan untuk memudahkan stake holder untuk membaca analisa dari data yang sudah di analisis yang berguna untuk membantu mengembangkan perusahaan Bike Sharing 
