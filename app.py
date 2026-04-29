@@ -45,7 +45,7 @@ start_date, end_date = st.sidebar.slider(
 
 # Season filter
 Harian_df['season_name'] = Harian_df['season'].map(season_map)
-season_name_list = ["Spring", "Summer", "Fall", "Winter"]
+season_name = ["Spring", "Summer", "Fall", "Winter"]
 selected_season_name = st.sidebar.multiselect(
     "Pilih Musim",
     options=season_name_list,
@@ -85,7 +85,7 @@ selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_we
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Harian_df['season_name'].isin(selected_season_name_list)) &
+    (Harian_df['season_name'].isin(selected_season_name)) &
     (Harian_df['month_name'].isin(selected_month_names)) &
     (Harian_df['weekday_name'].isin(selected_weekday_names))
 ]
