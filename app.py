@@ -49,14 +49,13 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
-Harian_df['season_names'] = Harian_df['season'].map(season_map)
+Harian_df['season_int'] = Harian_df['season'].map(season_map)
 season_names_list = [ 'Spring', 'Summer', 'Fall', 'Winter' ]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
     options=season_names_list,
     default=season_names_list
 )
-selected_season = 
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
 
