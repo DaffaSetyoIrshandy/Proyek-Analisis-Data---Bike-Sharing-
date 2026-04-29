@@ -17,6 +17,7 @@ Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
+Harian_df['season'] = Harian_df['season'].astype(int)
 
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
@@ -50,11 +51,10 @@ start_date, end_date = st.sidebar.slider(
 
 # Season filter
 Harian_df['season_names'] = Harian_df['season'].map(season_map)
-season_names_list = [ 'Spring', 'Summer', 'Fall', 'Winter' ]
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
-    options=season_names_list,
-    default=season_names_list
+    options=list(season_map.values()),
+    default=list(season_map.values())
 )
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
@@ -89,7 +89,7 @@ selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_we
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Harian_df['season_names'].isin(selected_season)) &
+    (Harian_df['season_name'].isin(selected_season)) &
     (Harian_df['month_name'].isin(selected_month_names)) &
     (Harian_df['weekday_name'].isin(selected_weekday_names))
 ]
@@ -140,9 +140,14 @@ st.pyplot(fig)
 
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
-
+season_count = (
+    filtered_harian
+    .groupby('season_name')['count']
+    .sum()
+    .reindex(season_map.values(), fill_value=0)
+)
 fig, ax = plt.subplots(figsize=(10, 6))
-season_names_count.plot(kind='bar', ax=ax)
+season_name_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
 ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
