@@ -50,8 +50,8 @@ start_date, end_date = st.sidebar.slider(
 # Season filter
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
-    options=season_names_list,
-    default=season_names_list
+    options=season_name,
+    default=season_name
 )
 
 # Hour filter
