@@ -82,8 +82,8 @@ min_date_df = Harian_df['date'].min()
 max_date_df = Harian_df['date'].max()
 
 date_df = date_df.groupby('dteday').agg({
-  'Harian_df['date']': 'sum', 
-  'Perjam_df['date']': 'sum'
+  'Harian_df': 'sum', 
+  'Perjam_df': 'sum'
 }).reset_index()
 # Date range filter
 start_date, end_date = st.sidebar.slider(
