@@ -112,14 +112,21 @@ plt.tight_layout()
 st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Jam ")
-hourly_count = filtered_perjam.groupby('hour')['count'].sum().sort_index()
-fig, ax = plt.subplots(figsize=(10, 6))
-hourly_count = hourly_count.plot(kind='bar', ax=ax)
-ax.set_title('Jumlah Penyewaan Berdasarkan Jam')
-ax.set_xlabel('Jam')
-ax.set_ylabel('Jumlah Penyewaan')
-plt.tight_layout()
-st.pyplot(fig)
+st.subheader("Data Penyewaan Berdasarkan Jam")
+
+hourly_count = filtered_perjam.groupby('hour')['cnt'].sum().sort_index()
+
+if hourly_count.empty:
+    st.warning("Data kosong setelah filter. Silakan ubah filter.")
+else:
+    fig, ax = plt.subplots(figsize=(10, 6))
+    hourly_count.plot(kind='bar', ax=ax)
+
+    ax.set_title('Jumlah Penyewaan Berdasarkan Jam')
+    ax.set_xlabel('Jam')
+    ax.set_ylabel('Jumlah Penyewaan')
+
+    st.pyplot(fig)
 
 st.write("filtered_perjam shape:", filtered_perjam.shape)
 st.write(filtered_perjam.head())
