@@ -21,7 +21,11 @@ Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 # Fitur interaktif filtering 
 st.sidebar.header("Filter Data")
 
-season_names_list = ["Spring", "Summer", "Fall", "Winter"]
+season_map = {
+    1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"
+}
+Harian_df['season_name'] = Harian_df['season'].map(season_map)
+
 month_names_map = {
     1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
     7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
@@ -79,7 +83,7 @@ selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_we
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Harian_df['season'].isin(selected_season)) &
+    (Harian_df['season_name'].isin(selected_season)) &
     (Harian_df['month'].isin(selected_months)) &
     (Harian_df['weekday'].isin(selected_weekdays))
 ]
