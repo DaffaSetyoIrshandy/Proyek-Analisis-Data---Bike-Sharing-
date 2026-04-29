@@ -102,7 +102,7 @@ filtered_perjam = Perjam_df[
 st.set_page_config(layout="wide")
 st.title("Analisis Data Bike Sharing")
 
-daily_count = filtered_harian.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
+daily_count = Harian_df.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
 daily_count.rename(columns={'casual': 'casual_user', 'registered': 'registered_user'}, inplace=True)  
 
 
