@@ -138,7 +138,8 @@ st.subheader(" Data Penyewaan Berdasarkan Season")
 season_name_count = (
   filtered_harian
   .groupby('season_name')['count']
-  .sum().sort_index()
+  .sum()
+  .reindex(season_name)
 )
 fig, ax = plt.subplots(figsize=(10, 6))
 season_name_count.plot(kind='bar', ax=ax)
