@@ -18,16 +18,16 @@ st.sidebar.header("Filter Data")
 # Date range filter
 start_date, end_date = st.sidebar.slider(
     "Pilih Rentang Tanggal Berdasarkan Harian",
-    min_value=min_df_harian_clean.date(),
-    max_value=max_df_harian_clean.date(),
-    value=(min_df_harian_clean.date(), max_df_harian_clean.date())
+    min_value = Harian_df['date'].min(),
+    max_value = Harian_df['date'].max()
+    value=(Harian_df['date'].min()),Harian_df['date'].max())
 )
 
 start_date, end_date = st.sidebar.slider(
     "Pilih Rentang Tanggal Berdasarkan Perjam",
-    min_value=min_df_Perjam_clean.date(),
-    max_value=max_df_Perjam_clean.date(),
-    value=(min_df_Perjam_clean.date(),max_df_Perjam_clean.date())
+    min_value = Perjam_df['date'].min(),
+    max_value = Perjam_df['date'].max()
+    value=(Perjam_df['date'].min(),Perjam_df['date'].max())
 )
 
 # Season filter
