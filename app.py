@@ -15,8 +15,8 @@ def df_harian_count(df_harian):
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
-Harian_df['date'] = pd.to_datetime(Harian_df['date'])
-Perjam_df['date'] = pd.to_datetime(Perjam_df['date'])
+Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
+Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 
 st.set_page_config(layout="wide")
 st.title("Analisis Data Bike Sharing")
