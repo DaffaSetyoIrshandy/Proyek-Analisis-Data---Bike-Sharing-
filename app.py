@@ -11,8 +11,7 @@ def df_harian_count(df_harian):
     df_harian_2011 = df_harian.query(str('dteday >= "2011-01-01" and dteday < "2012-12-31"'))
     return df_harian_count_2011
   
-st.sidebar.header("Filter Data")
-selected_year = st.sidebar.selectbox("Pilih Tahun", options=[2011, 2012])
+
 
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
@@ -59,3 +58,30 @@ ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
 plt.tight_layout()
 st.pyplot(fig)
+
+#Menambahkan filtering pada streamlit
+# Filtering logic
+filtered_harian_df = Harian_df[
+    (Harian_df['dteday'].dt.date >= start_date) &
+    (Harian_df['dteday'].dt.date <= end_date) &
+    (Harian_df['season'].isin(selected_season)) &
+    (Harian_df['month'].isin(selected_months)) &
+    (Harian_df['weekday'].isin(selected_weekdays)) &
+    (Harian_df['weather_situation'].isin(selected_weather_conds))
+].copy()
+
+filtered_perjam_df = Perjam_df[
+    (Perjam_df['dteday'].dt.date >= start_date) &
+    (Perjam_df['dteday'].dt.date <= end_date) &
+    (Perjam_df['season'].isin(selected_season)) &
+    (Perjam_df['hour'].isin(selected_hour_int)) &
+    (Perjam_df['month'].isin(selected_months)) &
+    (Perjam_df['weekday'].isin(selected_weekdays)) &
+    (Perjam_df['weather_situation'].isin(selected_weather_conds))
+].copy()
+
+# Recalculate daily_count and hourly_count based on filtered data
+daily_count = filtered_harian_df.groupby('dteday').agg({'casual': 'sum', 'registered': 'sum'}).reset_index()
+daily_count.rename(columns={'casual': 'casual_user', 'registered': 'registered_user'}, inplace=True)
+hourly_count = filtered_perjam_df.groupby('hour')['count'].sum()
+season_count = filtered_harian_df.groupby('season')['count'].sum()
