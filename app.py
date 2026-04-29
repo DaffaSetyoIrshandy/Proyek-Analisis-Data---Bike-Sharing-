@@ -15,7 +15,9 @@ def df_harian_count(df_harian):
 Harian_df = pd.read_csv("df_harian_clean.csv")
 Perjam_df = pd.read_csv("df_Perjam_clean.csv")
 
-
+Harian_df['season'] = Harian_df['season'].astype(int)
+Harian_df['mnth'] = Harian_df['mnth'].astype(int)
+Harian_df['weekday'] = Harian_df['weekday'].astype(int)
 Harian_df['dteday'] = pd.to_datetime(Harian_df['date'])
 Perjam_df['dteday'] = pd.to_datetime(Perjam_df['date'])
 
@@ -29,12 +31,19 @@ season_map = {
     3: "Fall",
     4: "Winter"
 }
-month_names_map = {
-    1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
-    7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
+month_map = {
+    1: "January", 2: "February", 3: "March", 4: "April",
+    5: "May", 6: "June", 7: "July", 8: "August",
+    9: "September", 10: "October", 11: "November", 12: "December"
 }
-weekday_names_map = {
-    0: "Minggu", 1: "Senin", 2: "Selasa", 3: "Rabu", 4: "Kamis", 5: "Jumat", 6: "Sabtu"
+weekday_map = {
+    0: "Sunday",
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday"
 }
 
 
@@ -51,13 +60,12 @@ start_date, end_date = st.sidebar.slider(
 )
 
 # Season filter
-Harian_df['season_names'] = Harian_df['season'].map(season_map)
+Harian_df['season_name'] = Harian_df['season'].map(season_map)
 selected_season = st.sidebar.multiselect(
     "Pilih Musim",
     options=list(season_map.values()),
     default=list(season_map.values())
 )
-
 # Hour filter
 hours_str = [f"{i:02d}:00" for i in range(24)]
 
@@ -70,7 +78,7 @@ selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
 
 
 # Month filter
-Harian_df['month_name'] = Harian_df['month'].map(month_names_map)
+Harian_df['month_name'] = Harian_df['month'].map(month_map)
 selected_month_names = st.sidebar.multiselect(
     "Pilih Bulan",
     options=list(month_names_map.values()),
@@ -79,7 +87,7 @@ selected_month_names = st.sidebar.multiselect(
 selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
 
 # Weekday filter
-Harian_df['weekday_name'] = Harian_df['weekday'].map(weekday_names_map)
+Harian_df['weekday_name'] = Harian_df['weekday'].map(weekday_map)
 selected_weekday_names = st.sidebar.multiselect(
     "Pilih Hari",
     options=list(weekday_names_map.values()),
