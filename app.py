@@ -79,7 +79,7 @@ selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_we
 filtered_harian = Harian_df[
     (Harian_df['dteday'] >= pd.to_datetime(start_date)) &
     (Harian_df['dteday'] <= pd.to_datetime(end_date)) &
-    (Harian_df['season_name'].isin(selected_season)) &
+    (Harian_df['season'].isin(selected_season)) &
     (Harian_df['month'].isin(selected_months)) &
     (Harian_df['weekday'].isin(selected_weekdays))
 ]
