@@ -137,14 +137,14 @@ st.pyplot(fig)
 
 st.subheader(" Data Penyewaan Berdasarkan Season")
 
-season_name_count = (
+season_names_count = (
   filtered_harian
   .groupby('season_names')['count']
   .sum()
   .reindex()
 )
 fig, ax = plt.subplots(figsize=(10, 6))
-season_name_count.plot(kind='bar', ax=ax)
+season_names_count.plot(kind='bar', ax=ax)
 ax.set_title('Jumlah Penyewaan Berdasarkan Musim')
 ax.set_xlabel('Musim')
 ax.set_ylabel('Jumlah Penyewaan')
