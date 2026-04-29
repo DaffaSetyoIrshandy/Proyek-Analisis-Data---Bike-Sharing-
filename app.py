@@ -78,8 +78,8 @@ selected_hour_int = [int(h.split(':')[0]) for h in selected_hour]
 Harian_df['month_name'] = Harian_df['month'].map(month_map)
 selected_month_names = st.sidebar.multiselect(
     "Pilih Bulan",
-    options=list(month_names_map.values()),
-    default=list(month_names_map.values())
+    options=list(month_map.values()),
+    default=list(month_map.values())
 )
 selected_months = [k for k, v in month_names_map.items() if v in selected_month_names]
 
@@ -87,8 +87,8 @@ selected_months = [k for k, v in month_names_map.items() if v in selected_month_
 Harian_df['weekday_name'] = Harian_df['weekday'].map(weekday_map)
 selected_weekday_names = st.sidebar.multiselect(
     "Pilih Hari",
-    options=list(weekday_names_map.values()),
-    default=list(weekday_names_map.values())
+    options=list(weekday_map.values()),
+    default=list(weekday_map.values())
 )
 selected_weekdays = [k for k, v in weekday_names_map.items() if v in selected_weekday_names]
 
