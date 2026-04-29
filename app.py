@@ -97,7 +97,7 @@ selected_season = st.sidebar.multiselect(
 )
 
 # Hour filter
-hours = list(range(24))
+hours = hours = [f"{i:02d}:00" for i in range(24)]
 selected_hour = st.sidebar.multiselect(
     "Pilih Jam",
     options=hours,
